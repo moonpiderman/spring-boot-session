@@ -4,7 +4,7 @@ spring:
   redis:
     host: local
     port: 6379
-    password: password
+    password:
   profiles:
     active: local
   jpa:
@@ -17,6 +17,10 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+# Postgresql Username : auth_section
+# Postgresql password : auth_section
+# Postgresql database : auth_section
+
 
 ---
 
