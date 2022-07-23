@@ -6,6 +6,16 @@ plugins {
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
+	kotlin("plugin.allopen") version "1.3.71"
+	kotlin("plugin.noarg") version "1.3.71"
+}
+
+allOpen {
+	annotation("javax.persistence.Entity")
+}
+
+noArg {
+	annotation("javax.persistence.Entity")
 }
 
 group = "com.prac"
@@ -18,8 +28,10 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
