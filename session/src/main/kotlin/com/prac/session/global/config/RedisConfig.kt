@@ -11,9 +11,13 @@ import org.springframework.data.redis.connection.RedisConnectionFactory
 import org.springframework.data.redis.connection.RedisPassword
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession
 
 @Configuration
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 10)
 class RedisConfig(
+    @Value("\${spring.redis.host}") private val host: String,
+    @Value("\${spring.redis.port}") private val port: Int,
     @Value("\${spring.redis.password}") private val password: RedisPassword,
 ) {
     @Bean
@@ -26,9 +30,9 @@ class RedisConfig(
 
     @Bean
     fun redisConnectionFactory(): RedisConnectionFactory {
-        val redisStandaloneConfig = RedisStandaloneConfiguration()
-        redisStandaloneConfig.password = password
-
-        return LettuceConnectionFactory(redisStandaloneConfig)
+        val redisConfiguration = RedisStandaloneConfiguration()
+        redisConfiguration.hostName = host
+        redisConfiguration.port = port
+        return LettuceConnectionFactory(redisConfiguration)
     }
 }

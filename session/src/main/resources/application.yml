@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   session:
     store-type: redis
   redis:
@@ -7,12 +9,18 @@ spring:
     password:
   profiles:
     active: local
+  datasource:
+      url: jdbc:mysql://localhost:3306/side_dish?serverTimezone=Asia/Seoul
+      username: side-dish
+      password: side-dish
+      driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    properties:
+      generate-ddl: true
       hibernate:
-        dialect: org.hibernate.dialect.PostgresPlusDialect
-      hibernate.default_batch_fetch_size: 1000
-    show-sql: true
+          ddl-auto: none
+      show-sql: false
+      database-platform: org.hibernate.dialect.MySQL8Dialect
+      open-in-view: false
   servlet:
     multipart:
       max-file-size: 100MB
