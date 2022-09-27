@@ -2,6 +2,7 @@ package com.prac.session.global.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -29,6 +30,10 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .antMatchers(
                 "/api/v1/users/sign-up",
                 "/api/v1/users/sign-in",
+            ).permitAll()
+            .antMatchers(
+                HttpMethod.GET,
+                "/api/v1/auth/{name}/{message}",
             ).permitAll()
     }
 }

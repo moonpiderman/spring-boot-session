@@ -32,6 +32,7 @@ class RedisConfig(
     fun redisConnectionFactory(): RedisConnectionFactory {
         val redisConfiguration = RedisStandaloneConfiguration()
         redisConfiguration.hostName = host
+        redisConfiguration.password = password
         redisConfiguration.port = port
         return LettuceConnectionFactory(redisConfiguration)
     }

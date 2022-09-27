@@ -1,10 +1,13 @@
 spring:
+  mvc:
+    servlet:
+        load-on-startup: 1
   main:
     allow-bean-definition-overriding: true
   session:
     store-type: redis
   redis:
-    host: local
+    host: localhost
     port: 6379
     password:
   profiles:
